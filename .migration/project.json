@@ -1,0 +1,6 @@
+{
+  "type": "da",
+  "contentHostUrl": "https://content.da.live/ema-demo/ema-demo/",
+  "demoMode": true,
+  "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+}

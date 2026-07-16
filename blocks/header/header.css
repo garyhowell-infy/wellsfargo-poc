@@ -1,0 +1,295 @@
+/* stylelint-disable no-descending-specificity */
+
+/*
+ * Wells Fargo header — three-tier nav
+ *   .nav-brand-bar : red #d71e28 utility bar (logo + utility links + Sign On pill)
+ *   .nav-sections  : white main-navigation band (top-level sections)
+ *   .nav-subnav    : white contextual sub-nav band (active section's children)
+ */
+
+header .nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+header nav {
+  display: block;
+  margin: 0;
+  font-family: var(--body-font-family);
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav a:any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Row 0: brand / utility bar (red) ---------- */
+header .nav-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  background-color: var(--brand-red, #d71e28);
+  padding: 0 24px;
+  min-height: 56px;
+}
+
+header .nav-logo {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+header .nav-logo img {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+
+header .nav-utility {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-lg);
+}
+
+header .nav-utility li {
+  display: flex;
+  align-items: center;
+}
+
+header .nav-utility a:any-link {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.2;
+  transition: opacity var(--transition-fast);
+}
+
+header .nav-utility a:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+/* Sign On pill button */
+header .nav-utility-cta a:any-link {
+  border: 1px solid #fff;
+  border-radius: 24px;
+  padding: 7px 22px;
+  font-family: var(--heading-font-family);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+header .nav-utility-cta a:hover {
+  background-color: #fff;
+  color: var(--brand-red, #d71e28);
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* ---------- Row 1: main navigation (white) ---------- */
+header .nav-sections {
+  background-color: #fff;
+  padding: 0 24px;
+}
+
+header .nav-sections-list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gap-xl);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+header .nav-sections-list > li {
+  display: flex;
+  align-items: center;
+}
+
+header .nav-sections-list a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 18px 0;
+  color: var(--text-color);
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+header .nav-sections-list a:hover {
+  color: var(--brand-red, #d71e28);
+}
+
+/* Active section: red underline indicator */
+header .nav-sections-list .nav-active a:any-link {
+  color: var(--text-color);
+  border-bottom-color: var(--brand-red, #d71e28);
+  font-family: var(--heading-font-family);
+}
+
+/* ---------- Row 2: contextual sub-nav (white, subtle divider) ---------- */
+header .nav-subnav {
+  background-color: #fff;
+  padding: 0 24px;
+  border-top: 1px solid var(--border-color-light);
+}
+
+header .nav-subnav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-xl);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+header .nav-subnav-list a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 0;
+  color: var(--text-color-subtle);
+  font-size: 15px;
+  border-bottom: 3px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+header .nav-subnav-list a:hover {
+  color: var(--brand-red, #d71e28);
+  border-bottom-color: var(--brand-red, #d71e28);
+}
+
+/* ---------- Hamburger (mobile only) ---------- */
+header .nav-hamburger {
+  display: none;
+}
+
+header .nav-hamburger button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+header .nav-hamburger-icon,
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background-color: #fff;
+  transition: transform var(--transition-normal), opacity var(--transition-fast);
+}
+
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+header .nav-hamburger-icon::before { top: -7px; }
+header .nav-hamburger-icon::after { top: 7px; }
+
+/* Hamburger morphs to an X when the drawer is open */
+header nav[aria-expanded='true'] .nav-hamburger-icon {
+  background-color: transparent;
+}
+
+header nav[aria-expanded='true'] .nav-hamburger-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+header nav[aria-expanded='true'] .nav-hamburger-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Mobile layout (< 1024px) ---------- */
+@media (width < 1024px) {
+  header .nav-hamburger {
+    display: block;
+    order: 2;
+  }
+
+  /* Brand bar on mobile: logo (left), hamburger + Sign On (right). */
+  header .nav-logo { order: 0; }
+
+  header .nav-utility {
+    order: 3;
+    gap: var(--gap-md);
+  }
+
+  /* Only the Sign On pill stays in the red bar; other utility links live in
+     the drawer's nav lists on mobile (matches source's compact mobile bar). */
+  header .nav-utility li:not(.nav-utility-cta) {
+    display: none;
+  }
+
+  header .nav-menu {
+    display: none;
+    background-color: #fff;
+  }
+
+  header nav[aria-expanded='true'] .nav-menu {
+    display: block;
+  }
+
+  header .nav-sections,
+  header .nav-subnav {
+    padding: 0;
+    border-top: 0;
+  }
+
+  header .nav-sections-list,
+  header .nav-subnav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+  }
+
+  header .nav-sections-list > li,
+  header .nav-subnav-list > li {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color-light);
+  }
+
+  header .nav-sections-list a:any-link,
+  header .nav-subnav-list a:any-link {
+    width: 100%;
+    padding: 14px 24px;
+    border-bottom: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  header .nav-subnav {
+    background-color: var(--light-color);
+  }
+}
+
+/* ---------- Desktop layout (>= 1024px) ---------- */
+@media (width >= 1024px) {
+  header .nav-hamburger {
+    display: none;
+  }
+
+  header .nav-menu {
+    display: block;
+  }
+}
